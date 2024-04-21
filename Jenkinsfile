@@ -29,9 +29,9 @@ pipeline {
                     
                     sh "pwd;cd Azure/Scripts/; pwd; ls;"
 
-                    sh 'sudo chmod 777 ./azureinfra.sh'
+                    sh 'sudo chmod 777 /var/lib/jenkins/workspace/KubernetesCluster/Azure/Scripts/azureinfra.sh'
 
-                    sh './azureinfra.sh;'
+                    sh '/var/lib/jenkins/workspace/KubernetesCluster/Azure/Scripts/azureinfra.sh;'
 
                     sh 'echo "Azure Cluster Infrastructure provisioning started"'
                 }
