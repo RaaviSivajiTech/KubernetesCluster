@@ -27,7 +27,7 @@ pipeline {
                     
                     sh 'echo "Azure Cluster Infrastructure provisioning started"'
                     
-                    sh "pwd;cd Azure/Scripts/ ; sudo ./azureinfra.sh"
+                    sh "pwd;cd Azure/Scripts/ ; sudo azureinfra.sh"
 
                      sh 'echo "Azure Cluster Infrastructure provisioning started"'
                 }
