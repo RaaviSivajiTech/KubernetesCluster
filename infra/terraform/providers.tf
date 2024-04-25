@@ -1,6 +1,13 @@
 terraform {
   required_version = ">=0.12"
 
+  backend "azurerm" {
+    resource_group_name = "NetworkWatcherRG"
+    storage_account_name  = "terraformstateravi"
+    container_name        = "tfstate"
+    key                   = "terraform.tfstate"    
+  }
+
   required_providers {
     azapi = {
       source  = "azure/azapi"
