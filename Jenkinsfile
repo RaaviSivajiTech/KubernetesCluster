@@ -6,8 +6,7 @@ pipeline {
         AZURE_SUBSCRIPTION_ID = credentials('AZURE_SUBSCRIPTION_ID')
         AZURE_CLIENT_ID = credentials('AZURE_CLIENT_ID')
         AZURE_CLIENT_SECRET = credentials('AZURE_CLIENT_SECRET')
-        AZURE_TENANT_ID = credentials('AZURE_TENANT_ID')
-        STORAGEACCESS_KEY = credentials('STORAGEACCESS_KEY')
+        AZURE_TENANT_ID = credentials('AZURE_TENANT_ID')       
     }
    agent  any
     stages {
@@ -54,7 +53,7 @@ pipeline {
                                         clientIdVariable: 'AZURE_CLIENT_ID',
                                         clientSecretVariable: 'AZURE_CLIENT_SECRET',
                                         tenantIdVariable: 'AZURE_TENANT_ID'),
-                                     azureStorage(credentialsId: 'terraformstateravi',
+                                     azureStorage(credentialsId: 'STORAGEACCESS_KEY',
                                      storageAccountKeyVariable: 'STORAGEACCESS_KEY')]) {
                         sh "terraform init"
                         sh "terraform plan -out=plan -var 'client_id=$AZURE_CLIENT_ID' -var 'client_secret=$AZURE_CLIENT_SECRET'"
