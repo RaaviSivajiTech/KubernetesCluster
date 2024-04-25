@@ -70,7 +70,7 @@ variable "web_server_name" {
   default = "Ubuntu EC2 Server"
 }
 variable "heading_one" {
-  type = string
+  type    = string
   default = "Ravi Sivaji"
 }
 variable "aws_key_name" {
