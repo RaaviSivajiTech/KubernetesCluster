@@ -22,6 +22,9 @@ pipeline {
             }
 
         stage('Plan') {
+            when {
+                changeset "Azure/Scripts/*"
+            }
             steps {
                  withCredentials([azureServicePrincipal('ARM_CRED')]) {
                     
@@ -34,6 +37,27 @@ pipeline {
                     sh '/var/lib/jenkins/workspace/KubernetesCluster/Azure/Scripts/azureinfra.sh;'
 
                     sh 'echo "Azure Cluster Infrastructure provisioning started"'
+                }
+            }
+        }
+
+        stage('init_and_plan') {
+            when {
+                changeset "infra/terraform/*"
+            }
+
+            steps {
+                dir('infra/terraform') {
+                    withCredentials([azureServicePrincipal(credentialsId: 'ARM_CRED',
+                                        subscriptionIdVariable: 'AZURE_SUBSCRIPTION_ID',
+                                        clientIdVariable: 'AZURE_CLIENT_ID',
+                                        clientSecretVariable: 'AZURE_CLIENT_SECRET',
+                                        tenantIdVariable: 'AZURE_TENANT_ID'),
+                                     azureStorage(credentialsId: 'terraformstateravi',
+                                     storageAccountKeyVariable: 'STORAGEACCESS_KEY')]) {
+                        sh "terraform init"
+                        sh "terraform plan -out=plan -var 'client_id=$AZURE_CLIENT_ID' -var 'client_secret=$AZURE_CLIENT_SECRET'"
+                    }
                 }
             }
         }      
