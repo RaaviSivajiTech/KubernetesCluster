@@ -55,7 +55,7 @@ pipeline {
                                         clientSecretVariable: 'AZURE_CLIENT_SECRET',
                                         tenantIdVariable: 'AZURE_TENANT_ID'),
                                      azureStorage(credentialsId: 'tfstate',
-                                     storageAccountKeyVariable: 'STORAGEACCESS_KEY')]) {
+                                     storageAccountKeyVariable: 'ARM_ACCESS_KEY')]) {
                         sh "terraform init"
                         sh "terraform plan -out=plan -var 'client_id=$AZURE_CLIENT_ID' -var 'client_secret=$AZURE_CLIENT_SECRET'"
                     }
