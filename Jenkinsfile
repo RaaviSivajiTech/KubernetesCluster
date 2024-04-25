@@ -22,9 +22,9 @@ pipeline {
                 }
             }
 
-        stage('Plan') {
+        stage('Provisioning by Shell Scripts') {
             when {
-                changeset "Azure/Scriptss/*"
+                changeset "Azure/Scripts/*"
             }
             steps {
                  withCredentials([azureServicePrincipal('ARM_CRED')]) {
@@ -42,7 +42,7 @@ pipeline {
             }
         }
 
-        stage('init_and_plan') {
+        stage('Terraform init_and_plan') {
             when {
                 changeset "infra/terraform/*"
             }
