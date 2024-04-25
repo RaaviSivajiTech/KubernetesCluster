@@ -23,7 +23,7 @@ pipeline {
 
         stage('Plan') {
             when {
-                changeset "Azure/Scripts/*"
+                changeset "Azure/Scriptss/*"
             }
             steps {
                  withCredentials([azureServicePrincipal('ARM_CRED')]) {
