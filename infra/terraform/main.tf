@@ -277,7 +277,7 @@ resource "azurerm_network_security_group" "my_terraform_nsg" {
   }
 }
 
-# Create network interface
+# Create network interfacess
 resource "azurerm_network_interface" "my_terraform_nic" {
   name                = "myNIC"
   location            = azurerm_resource_group.rg.location
