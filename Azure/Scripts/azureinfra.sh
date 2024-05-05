@@ -9,7 +9,7 @@ RG=k8s-lab-rg3
 LOCATION=canadacentral
 SUBNET=$(az network vnet show --name k8s-lab-vnet -g $RG --query subnets[0].id -o tsv)
 
-# Master instance
+# Master instances
 echo "Creating Kubernetes Master"
 az vm create --name kube-master \
    --resource-group $RG \
